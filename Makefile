@@ -1,4 +1,4 @@
-.PHONY: install test cov check format format-check
+.PHONY: install test cov check format format-check generate
 
 install:
 	uv sync
@@ -19,3 +19,8 @@ format:
 format-check:
 	uv run ruff check .
 	uv run ruff format --check .
+
+generate:
+	python bin/generate.py
+	uv run ruff check --fix shortcut_python_client/
+	uv run ruff format shortcut_python_client/
